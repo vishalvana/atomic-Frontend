@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:           #f7f6f3;
+  --bg-2:         #f0ede8;
+  --surface:      #ffffff;
+  --surface-2:    #faf9f7;
+  --surface-3:    #f3f1ed;
+  --border:       #e8e4dc;
+  --border-hover: #cdc7bc;
+  --shadow:       rgba(60, 50, 30, 0.06);
+  --shadow-md:    rgba(60, 50, 30, 0.1);
+
+  --text:         #1a1814;
+  --text-2:       #6b6558;
+  --text-3:       #a09890;
+  --text-4:       #c8c0b4;
+
+  --accent:       #1a1814;
+  --accent-blue:  #2563eb;
+  --accent-green: #16a34a;
+  --accent-red:   #dc2626;
+  --accent-amber: #d97706;
+
+  --radius:    5px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+  input, textarea, select { outline: none; font-family: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: rgba(26, 24, 20, 0.08); }
+}
+
+@layer components {
+  .tt-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 7px 10px;
+    font-size: 13px;
+    color: var(--text);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .tt-input::placeholder { color: var(--text-4); }
+  .tt-input:focus {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 0 3px rgba(26, 24, 20, 0.05);
+  }
+  .tt-input:disabled { opacity: 0.4; }
+
+  .tt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.12s;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+  .tt-btn-primary { background: var(--text); color: var(--bg); }
+  .tt-btn-primary:hover { background: #2c2820; }
+  .tt-btn-ghost {
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .tt-btn-ghost:hover {
+    border-color: var(--border-hover);
+    color: var(--text);
+    background: var(--surface-3);
+  }
+
+  .tt-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 8px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 0.1s;
+    border: 1px solid transparent;
+    letter-spacing: -0.01em;
+  }
+  .sidebar-item:hover { color: var(--text); background: var(--surface-3); }
+  .sidebar-item.active {
+    color: var(--text);
+    background: var(--surface);
+    border-color: var(--border);
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+
+  .mono { font-family: 'Geist Mono', monospace; }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.01em;
+  }
+
+  .divider { border: none; border-top: 1px solid var(--border); }
+}
+
+.fade-in { animation: fadeIn 0.22s ease both; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up { animation: slideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+select.tt-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a09890' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+select.tt-input option { background: #ffffff; color: #1a1814; }
+input[type="date"].tt-input::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
+@keyframes spin { to { transform: rotate(360deg); } }
