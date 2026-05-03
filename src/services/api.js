@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://atomicflow-production-0974.up.railway.app'
+const BASE_URL = 'https://atomicflow-production-d2ee.up.railway.app'
 
 const api = axios.create({ baseURL: BASE_URL })
 
